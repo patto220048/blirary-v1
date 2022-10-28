@@ -2,10 +2,20 @@
 @import 'variable';
 
 h1{
-    color: blue;
+    color: rgb(255, 0, 55);
 }
 
 h2{
-    color: $red-color;
+
     font-size: 100px;
+
+}
+.card-img-top {
+    width: 100%;    
+}
+.row .col-3 {
+    margin-top: 5px;
+}
+.card {
+    margin-top: 1rem;
 }
