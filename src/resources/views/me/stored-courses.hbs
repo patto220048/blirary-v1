@@ -1,0 +1,32 @@
+<div class="mt-4">
+    <table class="table table-dark mt-4">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tên sách</th>
+                <th scope="col">Tác giả</th>
+                <th scope="col">Thể loại</th>
+                <th scope="col">Thời gian tạo</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {{#each courses}}
+            <tr>
+                <th scope="row">{{sum @index 1}}</th>
+                <td>{{this.name}}</td>
+                <td>{{this.level}}</td>
+                <td>{{this.tl}}</td>
+                <td>{{this.createdAt}}</td>
+                <td>
+                    <a href="/courses/{{this._id}}/edit" class="btn btn-link">Sửa</a>
+                    <a href="/courses/{{this._id}}" class="btn btn-link">Xóa</a>
+                </td>
+
+            </tr>   
+            {{/each}}
+         
+        </tbody>
+    </table>
+
+</div>
