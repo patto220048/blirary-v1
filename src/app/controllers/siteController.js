@@ -15,8 +15,13 @@ class siteController  {
             .catch(next)
        
         }
-
+    
+    home(req, res) {
+        res.render('trangchu')
+    }
     
     
 }
 module.exports = new siteController;
+
+

@@ -14,5 +14,5 @@ const Course = new Schema({
     updateAt : { type: Date, default: Date.now },
   });
 
-module.exports = mongoose.model('cousre', Course); 
+module.exports = mongoose.model('test1', Course); 
 

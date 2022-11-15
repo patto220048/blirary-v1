@@ -3,10 +3,10 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Tên sách</th>
-                <th scope="col">Tác giả</th>
-                <th scope="col">Thể loại</th>
-                <th scope="col">Thời gian tạo</th>
+                <th scope="col">Book Name</th>
+                <th scope="col">Author</th>
+                <th scope="col">Type</th>
+                <th scope="col">Created Day</th>
 
             </tr>
         </thead>
@@ -19,8 +19,8 @@
                 <td>{{this.tl}}</td>
                 <td>{{this.createdAt}}</td>
                 <td>
-                    <a href="/courses/{{this._id}}/edit" class="btn btn-link">Sửa</a>
-                    <a href="/courses/{{this._id}}" class="btn btn-link" data-id = "{{this._id}}" data-toggle="modal" data-target="#delete-modal">Xóa</a>
+                    <a href="/courses/{{this._id}}/edit" class="btn btn-link">Edit</a>
+                    <a href="/courses/{{this._id}}" class="btn btn-link" data-id = "{{this._id}}" data-toggle="modal" data-target="#delete-modal">Delete</a>
                 </td>
 
             </tr>   
