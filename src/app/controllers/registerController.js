@@ -1,3 +1,5 @@
+
+const jwt = require('jsonwebtoken');    
 const User = require('../models/User');
 const Users = require('../models/User')
 
@@ -31,15 +33,35 @@ class RegisterController  {
 
     } 
     login_out( req, res, next) {
-       Users.findOne({
+       const user = Users.findOne({
         username: req.body.username,
         password: req.body.password
     })
        .then((username,password) =>{
-        if(!username || password ){
+
+        
+        if(!(username || password) ){
             return res.json('not found')
         }
         else {
+            // create token when user is logged in successfully
+            const acseccToken = jwt.sign(
+                {id: user.id ,
+                admin: user.admin
+            },
+             "mytoken",
+             {expiresIn: "20s"}
+            )
+            // save token
+            res.cookie('acseccToken', acseccToken ,{
+                httpOnly: true,
+                path: "/",
+                sameSite: "strict",
+                secure : false,
+            })
+
+            // res.json('token done')
+
             return res.redirect('/home')
         }
     

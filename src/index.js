@@ -2,6 +2,7 @@ const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const methodOverride = require('method-override') 
+var cookieParser = require('cookie-parser')
 
 const handlebars = require('express-handlebars');
 const app = express();
@@ -16,6 +17,7 @@ const db = require('./config/db');
 //conect bd
 db.connect();
 
+app.use(cookieParser())
 
 app.use(express.json());
 app.use(express.urlencoded());
