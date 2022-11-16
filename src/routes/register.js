@@ -9,8 +9,11 @@ const registerController = require('../app/controllers/registerController');
 
 
 
-router.use('/login', registerController.login);
-router.use('/signup', registerController.signup);
+router.use('/login', registerController.login_cr);
+router.post('/login_out', registerController.login_out)
+
+router.use('/signup', registerController.signup_cr);
+router.post('/signup_out', registerController.signup_out);
 
 
 
