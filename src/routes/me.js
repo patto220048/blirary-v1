@@ -9,6 +9,6 @@ const meController = require('../app/controllers/meController');
 
 
 
-router.get('/stored/courses', MiddleController.verifyToken,meController.storedCourse);
+router.get('/stored/courses', MiddleController.verifyTokenAdmin,meController.storedCourse);
 
 module.exports  = router;

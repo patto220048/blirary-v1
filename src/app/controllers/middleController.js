@@ -10,7 +10,7 @@ const midddlewareController = {
             const accessToken = token.split(' ')[1]
             jwt.verify(accessToken,'secretkey',(err,user)=>{
                 if (err) {
-                    res.redirect("/login")
+                    res.redirect("/register/login")
                 }
                 req.user = user;
                 next();
@@ -21,6 +21,22 @@ const midddlewareController = {
         else {
             res.status(401).json("you are not authenticated")
         }
+    },
+    verifyTokenAdmin : (req, res, next) => {
+        midddlewareController.verifyToken (req, res,() =>{
+            if (req.user.admin)
+            {
+                next();
+            }
+            else {
+                res.status(401).json("You are not admin")
+            }
+
+
+        })
+
+
+
     }
 }
 
