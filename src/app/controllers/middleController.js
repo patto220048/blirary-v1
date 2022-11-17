@@ -1,24 +1,27 @@
-const jwt = require('jsonwebtoken');    
-const Users = require('../models/User');
+const { response } = require('express');
+const jwt = require('jsonwebtoken');
 
+const midddlewareController = {
+    //verifyToken
+    verifyToken : (req, res, next) => {
 
-const MiddleController = {
-
-    verifyToken :(req, res, next)=>{
-
-        const token = req.headers.token;
-        if(token){
+        const token = req.cookies.accsetToken;
+        if (token) {
             const accessToken = token.split(' ')[1]
-            const user = jwt.verify(accessToken , 'mytoken');
-            req.user = user;
-            next();
+            jwt.verify(accessToken,'secretkey',(err,user)=>{
+                if (err) {
+                    res.redirect("/login")
+                }
+                req.user = user;
+                next();
+
+            })
+            // res.json(accessToken);
         }
-       
-        
+        else {
+            res.status(401).json("you are not authenticated")
+        }
     }
-
-
-
 }
 
-module.exports = MiddleController;
+module.exports = midddlewareController

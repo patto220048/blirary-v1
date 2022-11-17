@@ -7,7 +7,7 @@ const courseController = require('../app/controllers/courseController');
 const MiddleController = require('../app/controllers/middleController');
 
 
-router.post('/store', courseController.store);
+router.post('/store', MiddleController.verifyToken,courseController.store);
 router.get('/create',MiddleController.verifyToken,courseController.create);
 router.put('/:id', courseController.update);
 router.delete('/:id', courseController.destroy);

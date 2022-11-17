@@ -2,7 +2,9 @@ const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const methodOverride = require('method-override') 
-var cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser')
+const cors = require('cors')
+
 
 const handlebars = require('express-handlebars');
 const app = express();
@@ -18,6 +20,7 @@ const db = require('./config/db');
 db.connect();
 
 app.use(cookieParser())
+app.use(cors())
 
 app.use(express.json());
 app.use(express.urlencoded());

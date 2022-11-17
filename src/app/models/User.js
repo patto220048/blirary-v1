@@ -20,7 +20,7 @@ const User = new Schema({
     },
     email :{
         type:String,
-        required:true,
+        required:false,
         minlength:10,
         maxlength: 50,
         unique: true,

@@ -7,6 +7,7 @@ const MiddleController = require('../app/controllers/middleController');
 
 
 
+router.use('/logout', registerController.logout)
 
 
 router.use('/login', registerController.login_cr);
