@@ -67,7 +67,7 @@ const  RegisterController = {
                     admin: user.admin
                 },
                 'secretkey',
-                {expiresIn: '20s'})
+                {expiresIn: '1h'})
                 const cookie =res.cookie('accsetToken', 'Bearer ' + accsetToken, {
                     expires: new Date(Date.now() + 8 * 3600000)
                   },
