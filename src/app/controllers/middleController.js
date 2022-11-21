@@ -1,5 +1,6 @@
 const { response } = require('express');
 const jwt = require('jsonwebtoken');
+const User = require('../models/User');
 
 const midddlewareController = {
     //verifyToken
@@ -22,6 +23,8 @@ const midddlewareController = {
             res.status(401).json("you are not authenticated")
         }
     },
+
+    // verify admin vilid
     verifyTokenAdmin : (req, res, next) => {
         midddlewareController.verifyToken (req, res,() =>{
             if (req.user.admin)
@@ -37,7 +40,42 @@ const midddlewareController = {
 
 
 
+    },
+    /// check user access and print information in header
+    checkUser : async ( req, res, next) => {
+
+        const token = req.cookies.accsetToken;
+        if (token)
+        {
+            const accessToken = token.split(' ')[1]
+            jwt.verify(accessToken,'secretkey',async (err,decode)=>{
+                if (err) {
+                    res.locals.user = null
+                    next()
+                }
+                else {
+                    let user = await User.findById(decode.user)
+                    .then(user1 => {
+                        res.locals.user = user1.username
+                    })
+                    next()
+                   
+
+                }
+            })
+
+        }
+        else {
+            res.locals.user = null
+            next()
+        }
+
+
+
+
     }
+
+
 }
 
 module.exports = midddlewareController

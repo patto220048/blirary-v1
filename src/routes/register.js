@@ -10,11 +10,11 @@ const MiddleController = require('../app/controllers/middleController');
 router.use('/logout', registerController.logout)
 
 
-router.use('/login', registerController.login_cr);
+router.get('/login', registerController.login_cr);
 router.post('/login_out',registerController.login_out)
 
-router.use('/signup', registerController.signup_cr);
-router.post('/signup_out', registerController.signup_out);
+router.get('/signup', registerController.signup_cr);
+router.post('/signup',registerController.signup_out);
 
 
 

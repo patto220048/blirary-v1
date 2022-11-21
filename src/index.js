@@ -5,14 +5,13 @@ const methodOverride = require('method-override')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 
-
+const validator = require('validator');
 const handlebars = require('express-handlebars');
 const app = express();
-const port = 3000;
+const port = 8080;
 
 
 const route = require('./routes');
-
 
 
 const db = require('./config/db');

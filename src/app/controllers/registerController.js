@@ -5,6 +5,33 @@ const Users = require('../models/User')
 const bcrypt = require('bcrypt');
 
 
+// handle errors
+const handlaError = (err) => {
+    let errors = {email: "", password: "", username: ""}
+    //duplicate
+    if (err.code === 11000){
+        errors.email = "That email or username is already registered"
+        errors.username = "That email or username is already registered"
+
+        return errors
+    }
+    //vilid error
+    if (err.message.includes('user_db validation failed')) {
+        Object.values(err.errors).forEach(({properties}) => {
+            errors[properties.path] = properties.message;
+        })
+        
+
+    }
+    return errors
+    
+
+}
+
+
+
+
+// register
 const  RegisterController = {
     //[POST] /register/signup
     signup_cr : ( req, res, next) => {
@@ -15,25 +42,44 @@ const  RegisterController = {
 
     signup_out : async ( req, res, next) =>  {
 
+
+        const {email, password, username} = req.body
+
         try {
 
             const salt = await bcrypt.genSalt(10);
             const hashed = await bcrypt.hash(req.body.password, salt);
             
-            const newUser = await new Users({
+            const newUser = await Users.create({
                 username: req.body.username,
                 email: req.body.email,
                 password: hashed,
             });
+            // create token sing up successfully
+            const token = jwt.sign(
+                {user: newUser._id},
+                'secretkey',
+                {expiresIn: '1h'})
+            // // create cookie 
+            const cookie =res.cookie('accsetToken', 'Bearer ' + token, {
+                    expires: new Date(Date.now() + 8 * 3600000)
+                  },
+                  {HttpOnly: true,
+                    path: "/",
+                    sameSite: "strict",
+                    secure : false,})
 
-            const user = newUser.save();
-
-            res.redirect('/register/login')
+                    
+            res.status(200).json({newUser: newUser._id})
 
         }
-        catch(next) {
-            res.redirect('/')   
+        catch(err) {
+            errors = handlaError(err)
+            res.status(400).json({errors})
+
         }
+        
+       
     }
     ,
 
@@ -50,9 +96,12 @@ const  RegisterController = {
      {
         try{
 
-            const user = await Users.findOne({username: req.body.username});
+            const user = await Users.findOne({email: req.body.email});
             if (!user){
-                return res.status(404).json('wrong username');
+               
+                return res.status(404).json('wrong email');
+              
+
             }
             const validPassword = await bcrypt.compare(
                 req.body.password,
@@ -60,6 +109,10 @@ const  RegisterController = {
             );
             if (!validPassword){
                return res.status(404).json('wrong password');
+
+
+
+
             }
             if (user && validPassword) {
                 const accsetToken = jwt.sign({
@@ -71,16 +124,12 @@ const  RegisterController = {
                 const cookie =res.cookie('accsetToken', 'Bearer ' + accsetToken, {
                     expires: new Date(Date.now() + 8 * 3600000)
                   },
-                  {httpOnly: true,
+                  {HttpOnly: true,
                     path: "/",
                     sameSite: "strict",
                     secure : false,})
-
-            
                 res.redirect("/home")
-                // res.status(200).json("cokie")
-
-                
+               
             }
         
         }

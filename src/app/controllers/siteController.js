@@ -4,7 +4,7 @@ const {mutipleMongooseToOject} = require('../../util/mongoose')
 
 class siteController  {
 
-    // [GET] /trangchu
+    // [GET] /home
     index(req, res, next) {
         Course.find({})
             .then(courses => {

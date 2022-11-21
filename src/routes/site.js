@@ -5,8 +5,8 @@ const midddlewareController = require('../app/controllers/middleController')
 const siteController = require('../app/controllers/siteController');
 
 
-router.get('/home', midddlewareController.verifyToken,siteController.index);
-router.get('/', siteController.home);;
+router.get('/home', midddlewareController.verifyToken, midddlewareController.checkUser,siteController.index);
+router.get('/',  midddlewareController.checkUser,siteController.home);;
 
 
-module.exports  = router;
+module.exports  = router;   

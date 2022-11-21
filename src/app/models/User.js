@@ -1,34 +1,30 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const slug = require('mongoose-slug-generator');
-mongoose.plugin(slug);
+// const slug = require('mongoose-slug-generator');
+// mongoose.plugin(slug);
+const { isEmail, isAlphanumeric } = require('validator');
 
 
 const User = new Schema({
-    username :{
-        type:String,
-        required:true,
-        minlength:6,
-        maxlength: 20,
-        unique: true,
-    } ,
-    fullname :{
-        type:String,
-        minlength:6,
-        maxlength: 20, 
-       
-    },
     email :{
         type:String,
-        required:false,
-        minlength:10,
-        maxlength: 50,
+        required:[true, "Please enter an email"],
         unique: true,
+        lowercase:true,
+        validate: [isEmail,"Email validation failed"], 
     },
+    username :{
+        type:String,
+        required:[true, "Please enter a username"],
+        minlength:[6,'User must be at least 6 characters long'],
+        maxlength: 20,
+        unique: true,
+        // validate : [isAlphanumeric,"In username must be alphanumeric"], 
+    } ,
     password: {
         type: String,
-        required: true,
-        minlength: 6,
+        minlength: [ 6, 'Minimun password length is 6 characters' ], 
+        required: [ true, 'Please enter a password' ],
     },
     admin: {
         type:Boolean,

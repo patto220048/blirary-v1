@@ -1,30 +1,100 @@
 
-<body>
-    <form action="/register/signup_out" method="POST">
-        <div class="container">
-            <h3>Register System</h3>
+
+<div class="container " style="width: 70%" >
+    <h3>Register System</h3>
+    <form action="/register/signup" method="POST" class="form" >
+        <div class="form-group">
+            <label for="username">User Name: </label>
+            <input type="text"  name="username" class="form-control" id="username_id" value="" placeholder="Enter UserName" />
+        </div>
+        <div class="username_err" style="color: red;"></div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type=""  name= "email"class="form-control"  id="email_id" value="" placeholder="Enter email" />
+        </div>
+        <div class="email_err" style="color: red"></div>
 
         <div class="form-group">
-            <label for="">Full Name: </label>
-            <input type="text" required="true" name= "fullname"class="form-control" id="Full_Name_ID" value="" placeholder="Enter Fullname" />
+            <label for="password">Password: </label>
+            <input type="password" name= "password" class="form-control" id="password_id" value="" placeholder="Enter Password" minlength="6"   />
         </div>
-        <div class="form-group">
-            <label for="">User Name: </label>
-            <input type="text" required="true" name="username" class="form-control" id="User_ID" value="" placeholder="Enter UserName" />
-        </div>
-        <div class="form-group">
-            <label for="">Email</label>
-            <input type="email" required="true" name= "email"class="form-control" id="Re_Password_ID" value="" placeholder="Enter email" />
-        </div>
-        <div class="form-group">
-            <label for="">Password: </label>
-            <input type="password" required="true" name= "password"class="form-control" id="Password_ID" value="" placeholder="Enter Password" />
-        </div>
+        <div class="password_err" style="color: red" ></div>
 
-        <div class="form-group">
-            <input type="submit" class="btn btn-success"/>
-            <input type="reset" class="btn btn-success" />
-        </div>
-        </div>
+       <button class="btn-success" value="submit">Sign up</button>
     </form>
-</body>
+</div>
+
+
+
+
+<script>
+
+    
+
+   
+  
+    const form = document.querySelector('.container_main .container form')
+
+    const email_err = document.querySelector('.email_err')
+    const username_err = document.querySelector('.username_err')
+    const password_err = document.querySelector('.password_err')
+    
+
+
+   
+    if(form){
+        
+        form.addEventListener('submit', async (e)=>{
+            e.preventDefault();
+
+            {{!-- reset value --}}
+            email_err.textContent = ""
+            username_err.textContent = ""
+            password_err.textContent = ""
+
+            {{!-- get value form --}}
+            const username = document.getElementById('username_id').value
+            const password = document.getElementById('password_id').value
+            const email = document.getElementById('email_id').value
+
+
+            try{
+                const res = await fetch('/register/signup',{
+                method: 'POST',
+                body: JSON.stringify({username, password, email}),
+                headers : {'Content-Type': 'application/json'}
+                });
+                const data = await res.json();
+                if(data.errors){
+                    email_err.textContent = data.errors.email
+                    username_err.textContent = data.errors.username
+                    password_err.textContent = data.errors.password
+
+                }
+                if(data.newUser){
+                    location.assign('/')
+                }
+
+                    
+            }
+            catch(err){
+                next()
+            }
+
+        })
+              
+    }
+   
+    
+    
+    
+      
+    
+
+  
+    
+
+
+  
+
+</script>

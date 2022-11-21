@@ -13,12 +13,14 @@
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
             <form method="POST" action='/register/login_out'>
                 <div class="form-group">
-                    <label for="">User Name: </label>
-                    <input type="text" required="true"  name ='username'class="form-control" placeholder="Enter User Name" />
+                    <label for="">Email</label>
+                    <input type="email" required="true"  name ='email'class="form-control" placeholder="Enter email" />
+                    <span style="color: red;"> </span>
                 </div>
                 <div class="form-group">
                     <label for="Password">Password:</label>
                     <input type="Password" required="true" name='password'class="form-control" placeholder="Enter Password" />
+                    <span style="color: red;"></span>
                 </div>
                 <button type="submit" class="btn btn-info">Login</button>
                 <a href="http://localhost:3000/register/signup" class="btn btn-info">Sign up</a>
