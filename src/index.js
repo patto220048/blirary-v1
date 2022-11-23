@@ -8,7 +8,7 @@ const cors = require('cors')
 const validator = require('validator');
 const handlebars = require('express-handlebars');
 const app = express();
-const port = 8080;
+const port = 3000;
 
 
 const route = require('./routes');

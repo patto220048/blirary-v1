@@ -1,34 +1,78 @@
 
-<body>
-    <div class="container" style="width: 70%">
-      <br />
-      <br />
-      <br />
-      <h3>LOGIN</h3>
-      <br />
-
-      
-
-        <div class="row">
-        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-            <form method="POST" action='/register/login_out'>
-                <div class="form-group">
-                    <label for="">Email</label>
-                    <input type="email" required="true"  name ='email'class="form-control" placeholder="Enter email" />
-                    <span style="color: red;"> </span>
-                </div>
-                <div class="form-group">
-                    <label for="Password">Password:</label>
-                    <input type="Password" required="true" name='password'class="form-control" placeholder="Enter Password" />
-                    <span style="color: red;"></span>
-                </div>
-                <button type="submit" class="btn btn-info">Login</button>
-                <a href="http://localhost:3000/register/signup" class="btn btn-info">Sign up</a>
-                
-
-            </form>
+<div class="container" style="width: 70%">
+    <h3>Login</h3>
+    <form action="/register/login" method="POST">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input class="form-control" id="email_login" aria-describedby="emailHelp" placeholder="Enter email">
+            <span class="email_err" style="color: red"></span>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="password_login" placeholder="Password">
+            <span class="password_err" style="color: red"></span>
         </div>
-      </div>
-    </div>
+        <button type="submit" class="btn btn-primary">Login</button>
+        <a href="http://localhost:3000/register/signup" class="btn btn-primary">Sign up</a>
+    </form>
+</div>
 
-</body>
+
+<script>
+
+    const form2 = document.querySelector('.container_main .container form')
+
+
+    const email_err = document.querySelector('.email_err')
+    const password_err = document.querySelector('.password_err')
+        
+    if(form2){
+
+        form2.addEventListener('submit', async (e)=>{
+            e.preventDefault();
+
+            {{!-- reset err--}}
+            email_err.textContent = ""
+            password_err.textContent = ""
+            {{!-- get value --}}
+            const email = document.getElementById('email_login').value
+            const password = document.getElementById('password_login').value
+
+            try{
+                const res = await fetch('/register/login',{
+                    method: 'POST',
+                    body: JSON.stringify ({email, password}),
+                    headers : {'Content-Type': 'application/json'}
+
+                });
+                const data = await res.json()
+                if(data.errors){
+                    email_err.textContent = data.errors.email
+                    password_err.textContent = data.errors.password
+
+                }
+                if(data.user){
+                    location.assign('/home')
+                }
+
+            }
+            catch(err){
+                console.log(err)
+            }
+
+
+
+        })
+
+        
+        
+    }else{
+        console.log('not found')
+    }
+
+
+
+
+
+
+
+</script>

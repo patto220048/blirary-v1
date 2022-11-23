@@ -6,21 +6,22 @@
         <div class="form-group">
             <label for="username">User Name: </label>
             <input type="text"  name="username" class="form-control" id="username_id" value="" placeholder="Enter UserName" />
+            <span class="username_err" style="color: red;"></span>
         </div>
-        <div class="username_err" style="color: red;"></div>
+        
         <div class="form-group">
             <label for="email">Email</label>
-            <input type=""  name= "email"class="form-control"  id="email_id" value="" placeholder="Enter email" />
+            <input name= "email"class="form-control"  id="email_id" value="" placeholder="Enter email" />
+            <span class="email_err" style="color: red"></span>
         </div>
-        <div class="email_err" style="color: red"></div>
 
         <div class="form-group">
             <label for="password">Password: </label>
-            <input type="password" name= "password" class="form-control" id="password_id" value="" placeholder="Enter Password" minlength="6"   />
+            <input required = "true" type="password" name="password" class="form-control" id="password_id" placeholder="Enter Password"   />
+            <span class="password_err" style="color: red" ></span>
         </div>
-        <div class="password_err" style="color: red" ></div>
 
-       <button class="btn-success" value="submit">Sign up</button>
+       <button class="btn btn-primary" value="submit">Sign up</button>
     </form>
 </div>
 
@@ -33,7 +34,8 @@
 
    
   
-    const form = document.querySelector('.container_main .container form')
+    const form1 = document.querySelector('.container_main .container form')
+    console.log(form1)
 
     const email_err = document.querySelector('.email_err')
     const username_err = document.querySelector('.username_err')
@@ -42,12 +44,12 @@
 
 
    
-    if(form){
+    if(form1){
         
-        form.addEventListener('submit', async (e)=>{
+        form1.addEventListener('submit', async (e)=>{
             e.preventDefault();
 
-            {{!-- reset value --}}
+            {{!-- reset err --}}
             email_err.textContent = ""
             username_err.textContent = ""
             password_err.textContent = ""
@@ -61,10 +63,11 @@
             try{
                 const res = await fetch('/register/signup',{
                 method: 'POST',
-                body: JSON.stringify({username, password, email}),
+                body: JSON.stringify ({username, password, email}),
                 headers : {'Content-Type': 'application/json'}
                 });
                 const data = await res.json();
+                {{!-- console.log(data) --}}
                 if(data.errors){
                     email_err.textContent = data.errors.email
                     username_err.textContent = data.errors.username
@@ -84,17 +87,7 @@
         })
               
     }
-   
-    
-    
-    
-      
-    
-
-  
-    
-
-
+     
   
 
 </script>

@@ -12,9 +12,19 @@ const handlaError = (err) => {
     if (err.code === 11000){
         errors.email = "That email or username is already registered"
         errors.username = "That email or username is already registered"
-
         return errors
     }
+    //incorrect email
+    if (err.message == 'incorrect email'){
+        errors.email = "That email is incorrect"
+    }
+    //incorrect password
+    if (err.message == 'incorrect password'){
+        errors.password = "That password is incorrect"
+    }
+
+
+
     //vilid error
     if (err.message.includes('user_db validation failed')) {
         Object.values(err.errors).forEach(({properties}) => {
@@ -75,7 +85,7 @@ const  RegisterController = {
         }
         catch(err) {
             errors = handlaError(err)
-            res.status(400).json({errors})
+            res.status(400).json({ errors })
 
         }
         
@@ -92,27 +102,21 @@ const  RegisterController = {
     } ,
 
 
-    login_out: async( req, res, next) =>
-     {
+    login_out : async( req, res, next) =>{
+
+        const {email, password } = req.body
         try{
 
-            const user = await Users.findOne({email: req.body.email});
+            const user = await Users.findOne({email});
             if (!user){
-               
-                return res.status(404).json('wrong email');
-              
-
+               throw Error('incorrect email')
             }
             const validPassword = await bcrypt.compare(
-                req.body.password,
+                password,
                 user.password
             );
             if (!validPassword){
-               return res.status(404).json('wrong password');
-
-
-
-
+                throw Error('incorrect password')
             }
             if (user && validPassword) {
                 const accsetToken = jwt.sign({
@@ -128,13 +132,20 @@ const  RegisterController = {
                     path: "/",
                     sameSite: "strict",
                     secure : false,})
-                res.redirect("/home")
+
+                res.status(200).json({user: user._id})
                
             }
         
         }
-        catch{}
+        catch(err) {
+            errors = handlaError(err)
+            res.status(400).json({ errors })
+        } 
+
     },
+
+
     logout : (req, res) => {
         res.clearCookie('accsetToken')
         res.redirect('/')

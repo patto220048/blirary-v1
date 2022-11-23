@@ -23,8 +23,8 @@ const User = new Schema({
     } ,
     password: {
         type: String,
-        minlength: [ 6, 'Minimun password length is 6 characters' ], 
-        required: [ true, 'Please enter a password' ],
+        required: [true, "Please enter a password"],
+        minlength: 6,
     },
     admin: {
         type:Boolean,
