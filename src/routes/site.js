@@ -9,4 +9,4 @@ router.get('/home', midddlewareController.verifyToken, midddlewareController.che
 router.get('/',  midddlewareController.checkUser,siteController.home);;
 
 
-module.exports  = router;   
+module.exports  = router;

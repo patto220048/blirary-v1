@@ -7,20 +7,60 @@
                             <a href="http://localhost:3000/courses/{{this.slug}}">
                                 <img class="card-img-top " src="{{this.image}}" alt="Card image cap">
                             </a>
-                        <div class="card-body">
+                            <div class="card-body">
                             <a href="http://localhost:3000/courses/{{this.slug}}">
                                 <h5 class="card-title">{{this.name}}</h5>
                             </a>
-                            <p class="card-text">{{this.description}} </p>
-                        </div>
-                        <div class="card-footer">
+                          
+                            </div>
+                            <div class="card-footer">
                             <small class="text-muted">{{this.createdAt}}</small>
-                        </div>
+                            </div>
                     </div>
                 
                 {{/each}}
+            </div> 
+
+            <ul class="pagination justify-content-center">
+              
+                
+               
+                {{#each pages}}
+                <li class="page-item" id="listItem">
+                <a class="page-link" href="/home?page={{this}}">{{this}}</a></li>
+                {{/each}}  
+                
+            
+            </ul>
+
+            <div class="content">
+
             </div>
-        </div>
-    </div>
+            <div id="pagin">
+                
+            </div>
+            
         
-</div>
+</div>       
+
+
+<script>
+    
+
+    $.ajax({
+        url: 'http://localhost:3000/home?page=1',
+        type: 'GET',
+
+    })
+    .then(data=>{
+    })
+    .catch(err => console.log('loi application'))   
+
+
+
+  
+   
+  
+    
+      
+</script>

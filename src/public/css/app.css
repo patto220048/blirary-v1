@@ -13,3 +13,6 @@ h2 {
 .card-img-top {
   width: 100%;
   height: 225px; }
+
+.pagination {
+  padding-top: 2rem; }
