@@ -5,6 +5,7 @@ const coursesRouter = require('./courses');
 const siteRouter = require('./site');
 const registerRouter = require('./register');
 const { checkUser } = require('../app/controllers/middleController');
+const { restart } = require('nodemon');
 
 
 
