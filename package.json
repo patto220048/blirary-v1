@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/patto220048/nodejs#readme",
   "dependencies": {
-    "bcrypt": "^5.1.0",
+    "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "docenv": "^2.0.6",
@@ -34,9 +34,9 @@
     "method-override": "^3.0.0",
     "mongoose": "^6.6.7",
     "mongoose-slug-generator": "^1.0.4",
+    "nodemon": "^2.0.20",
     "paginationjs": "^2.1.5",
-    "validator": "^13.7.0",
-    "nodemon": "^2.0.20"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "node-sass": "^7.0.3"
