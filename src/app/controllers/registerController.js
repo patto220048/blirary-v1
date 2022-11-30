@@ -2,7 +2,7 @@
 const jwt = require('jsonwebtoken');    
 const User = require('../models/User');
 const Users = require('../models/User')
-const bcrypt = require('bcryptjs');
+// const bcrypt = require('bcryptjs');
 
 
 // handle errors
@@ -57,13 +57,13 @@ const  RegisterController = {
 
         try {
             
-            const salt = await bcrypt.genSalt(10);
-            const hashed = await bcrypt.hash(req.body.password, salt);
+            // const salt = await bcrypt.genSalt(10);
+            // const hashed = await bcrypt.hash(req.body.password, salt);
             
             const newUser = await Users.create({
                 username: req.body.username,
                 email: req.body.email,
-                password: hashed,
+                password: req.body.password,
             });
             // create token sing up successfully
             const token = jwt.sign(
