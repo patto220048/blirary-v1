@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/patto220048/nodejs#readme",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "docenv": "^2.0.6",
