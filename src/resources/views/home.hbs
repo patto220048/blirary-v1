@@ -4,11 +4,11 @@
             <div class="card-deck" >
                 {{#each courses}}
                     <div class="card">
-                            <a href="http://localhost:3000/courses/{{this.slug}}">
+                            <a href="/courses/{{this.slug}}">
                                 <img class="card-img-top " src="{{this.image}}" alt="Card image cap">
                             </a>
                             <div class="card-body">
-                            <a href="http://localhost:3000/courses/{{this.slug}}">
+                            <a href="/courses/{{this.slug}}">
                                 <h5 class="card-title">{{this.name}}</h5>
                             </a>
                           
@@ -48,7 +48,7 @@
     
 
     $.ajax({
-        url: 'http://localhost:3000/home?page=1',
+        url: '/home?page=1',
         type: 'GET',
 
     })

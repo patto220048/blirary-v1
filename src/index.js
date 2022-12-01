@@ -36,7 +36,6 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(methodOverride('_method'))
 
 
-
 const { restart } = require('nodemon');
 
 app.engine('hbs', handlebars.engine({
