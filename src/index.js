@@ -4,7 +4,7 @@ const express = require('express');
 const methodOverride = require('method-override') 
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
-const docenv = require('docenv');
+const docenv = require('dotenv').config();
 const $ = require('jquery')
 
 const paginate = require('handlebars-paginate');
