@@ -1,16 +1,27 @@
-<div class="mt-4">
-    <div class="row">
-        <div class="col-lg-3">
-            <button>ĐỌC NGAY </button>
-            <ul>
-                <li>{{course.level}}</li>
-            </ul>
+{{> header}}
 
+<div class="wapper">
+    <div class="sidebar">
+        <button class="sidebar-btn">Read now</button>
+        <button class="sidebar-btn">Brorow</button>
+        <div class="sidebar-items">
+            <ul class="list-group">
+                <li class="list-group-item ">Cras justo odio</li>
+                <li class="list-group-item">Dapibus ac facilisis in</li>
+                <li class="list-group-item">Morbi leo risus</li>
+                <li class="list-group-item">Porta ac consectetur ac</li>
+                <li class="list-group-item">Vestibulum at eros</li>
+            </ul>
+    
         </div>
-        <div class="col-lg-9">
-            <h2>{{course.name}}</h2>
-            <img src="{{course.image}}" alt="">
-            <p>{{course.description}}</p>
-        </div>
+    </div>
+    <div class="content">
+        <h2>{{course.name}}</h2>
+        <h4>Author: {{course.level}}</h4>
+        <img src="{{course.image}}" alt="{{course.slug}}">
+
+        <p>{{course.description}}</p>
+
+
     </div>
 </div>

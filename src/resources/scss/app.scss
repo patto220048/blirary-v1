@@ -206,3 +206,75 @@ h2{
     font-weight:600
   }
 }
+
+// show page css
+
+.wapper {
+  display: flex;
+  margin-top: 16px;
+  
+}
+.sidebar{
+  flex: 1;
+  display: flex;
+  justify-items: center;
+  flex-direction: column;
+  align-items: center;
+  height: 30px;
+  width: 15px;
+  margin: 10px;
+
+}
+.sidebar-btn{
+  border: none;
+  width: 160px;
+  padding: 16px;
+  font-size: 18px;
+  border-radius: 30px;
+  margin: 8px;
+  font-weight: 500;
+
+  
+}
+.sidebar-btn:hover {
+  background-color: #26272b;
+  color: white;
+  cursor: pointer;
+
+}
+.list-group-item:first-child {
+  border-top-left-radius:30px;
+  border-top-right-radius:30px;
+}
+.list-group-item:last-child{
+  border-bottom-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+.list-group {
+  padding-top: 24px;
+  font-size: 18px;
+  font-weight: 350;
+ 
+}
+.list-group-item{
+
+  border-radius: 30px;
+  margin: 8px;
+}
+
+.content{
+  flex: 5;
+
+}
+.list-group-item:hover{
+  background-color: #26272b;
+  color: white;
+  cursor: pointer;
+
+}
+
+
+
+
+
+
