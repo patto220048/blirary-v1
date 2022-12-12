@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const { isEmail, isAlphanumeric } = require('validator');
 
 
-const User = new Schema({
+const User =   new Schema({
     email :{
         type:String,
         required:[true, "Please enter an email"],
@@ -22,6 +22,7 @@ const User = new Schema({
         // validate : [isAlphanumeric,"In username must be alphanumeric"], 
     } ,
     password: {
+
         type: String,
         required: [true, "Please enter a password"],
         minlength: [6,'Password must be at least 6 characters long'],
