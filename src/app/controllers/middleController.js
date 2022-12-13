@@ -65,7 +65,7 @@ const midddlewareController = {
 
                 }
             })
-
+            
         }
         else {
             res.locals.user = null
