@@ -20,7 +20,7 @@ const midddlewareController = {
             // res.json(accessToken);
         }
         else {
-            res.status(401).json("you are not authenticated")
+            res.redirect("/error")
         }
     },
 
@@ -57,6 +57,8 @@ const midddlewareController = {
                     let user = await User.findById(decode.user)
                     .then(user1 => {
                         res.locals.user = user1.username
+                        res.locals.admin = user1.admin
+
                     })
                     next()
                    

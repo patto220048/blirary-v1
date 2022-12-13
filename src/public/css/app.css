@@ -214,3 +214,9 @@ h2 {
 .content > p {
   font-size: 28px;
   font-weight: 200; }
+
+.jumbotron {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center; }

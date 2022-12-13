@@ -40,7 +40,11 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a  class="dropdown-item "  href="/courses/create">CREATE</a>
-          <a class="dropdown-item" href="/me/stored/courses">BOOKSTORE</a>
+         {{#if admin}}
+          <a class="dropdown-item " href="/me/stored/courses">BOOKSTORE</a> 
+          {{/if}}
+
+
       </li>
     
     </ul>
