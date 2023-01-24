@@ -13,7 +13,7 @@ const { restart } = require('nodemon');
 
 function route(app){
     
-
+    
     app.use('*',checkUser)
     app.use('/register', registerRouter)
     app.use('/news', newsRouter)

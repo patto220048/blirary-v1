@@ -1,6 +1,6 @@
 
 const Course = require('../models/Course')
-const { mongooseToObject } = require('../../util/mongoose');
+const { mongooseToObject,mutipleMongooseToOject } = require('../../util/mongoose');
 const { request, response } = require('express');
 
 class courseController  {
@@ -64,6 +64,17 @@ class courseController  {
         .then(() => res.redirect('back'))
         .catch(next)
 
+    }
+    search(req, res, next) {
+        
+        const query = req.query.q 
+        
+        const courses = Course.find({name:{$regex:query, $options:'i' }}).limit(40)
+            .then(courses=>res.render('search',{courses: mutipleMongooseToOject(courses)}))
+            .catch(next)
+            
+
+       
     }
  
 }

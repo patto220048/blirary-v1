@@ -48,18 +48,32 @@
       </li>
     
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    <form id ="formSearch" class="form-inline my-2 my-lg-0">
+      <input name= "input" class="butonSearch" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" class="butonSearch" type="submit">Search</button>
     </form>
   </div>
 
 </nav>
 <script>
 
+  const formSearch = document.getElementById("formSearch")
+  
+  formSearch.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const value = formSearch.input.value
+    console.log(value);
 
-   
-
-
+    fetch(`/courses/v1/search?q=${value}`,{
+        method: 'GET',
+        })
+    location.assign(`/courses/v1/search?q=${value}`)
+        
+        
+      
+      
+  
+  })
+  
 
 </script>

@@ -16,6 +16,8 @@ router.delete('/:id', courseController.destroy);
 
 router.get('/:id/edit', courseController.edit);
 
-router.get('/:slug',MiddleController.verifyToken, courseController.show);    
+router.get('/:slug',MiddleController.verifyToken, courseController.show);
+
+router.get('/v1/search',courseController.search)
     
 module.exports  = router;
