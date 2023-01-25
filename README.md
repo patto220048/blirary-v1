@@ -86,42 +86,19 @@ Step 7: To start the express server, run the following
 npm run dev
 ```
 Final Step:
+## Deploy to AWS EC2 :
 
-Open [http://localhost:3000?editorial_features=enabled](http://localhost:3000?editorial_features=enabled) and take a look around. This URL flag adds an “Edit” button in the app on every editable piece of content which will take you back to Contentful web app where you can make changes. It also adds “Draft” and “Pending Changes” status indicators to all content if relevant.
+Steps that we will follow:
+    Create account on aws
+    Launch an EC2 instance
+    SSH into your instance
+    Install Node.js
+    Install Git and clone repository from GitHub
+    Start the node.js app
+    Keep App running using Pm2
 
-## Deploy to Heroku
-You can also deploy this app to Heroku:
-
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 
-## Use Docker
-You can also run this app as a Docker container:
 
-Step 1: Clone the repo
 
-```bash
-git clone https://github.com/contentful/the-example-app.nodejs.git
-```
 
-Step 2: Build the Docker image
-
-```bash
-docker build -t the-example-app.nodejs .
-```
-
-Step 3: Run the Docker container locally:
-
-```bash
-docker run -p 3000:3000 -d the-example-app.nodejs
-```
-
-If you created your own Contentful space, you can use it by overriding the following environment variables:
-
-```bash
-docker run -p 3000:3000 \
-  -e CONTENTFUL_SPACE_ID=<SPACE_ID> \
-  -e CONTENTFUL_DELIVERY_TOKEN=<DELIVERY_ACCESS_TOKEN> \
-  -e CONTENTFUL_PREVIEW_TOKEN=<PREVIEW_ACCESS_TOKEN> \
-  -d the-example-app.nodejs
-```
