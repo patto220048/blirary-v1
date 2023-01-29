@@ -4,7 +4,6 @@ const express = require('express');
 const methodOverride = require('method-override') 
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
-const docenv = require('dotenv').config();
 const $ = require('jquery')
 
 const paginate = require('handlebars-paginate');
@@ -22,6 +21,7 @@ const route = require('./routes');
 
 
 const db = require('./config/db');
+require('dotenv').config();
 const { inflateRawSync } = require('zlib');
 //conect bd
 db.connect();

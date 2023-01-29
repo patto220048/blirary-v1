@@ -1,60 +1,67 @@
 
-
-<nav class="navbar navbar-expand-lg " style=" background-color:#26272b; " >
-  <a style="color: white" class="navbar-brand"  href="/">Library</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon" ></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto" >
-      </li>
-        <li class="nav-item active">
-          <a style="color: white" class="nav-link " href="/home?page">Home <span class="sr-only">(current)</span></a>
-      </li>
-    {{#if user}}
-        <li class="nav-item active" style="padding-top: 8px;" >
-          <span style="color: white">{{#if user}}Wellcome, {{user}}{{/if}}</span>
-        </li>
-        <li class="nav-item active">
-          <a style="color: white" class="nav-link" href="/register/logout">Log Out<span class="sr-only">(current)</span></a>
-        </li>
-    {{else}}
-        </li>
-          <li class="nav-item active">
-            <a style="color: white" class="nav-link" href="/register/login">Login <span class="sr-only">(current)</span></a>
-        </li>
-        </li>
-          <li class="nav-item active">
-            <a style="color: white" class="nav-link" href="/register/signup">Sign up <span class="sr-only">(current)</span></a>
-        </li>
-      {{/if}}
-      </li>
-      
-
-      <li class="nav-item dropdown">
-        
-        <a style="color: white" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Menu
-        </a>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a  class="dropdown-item "  href="/courses/create">CREATE</a>
-         {{#if admin}}
-          <a class="dropdown-item " href="/me/stored/courses">BOOKSTORE</a> 
-          {{/if}}
-
-
-      </li>
+<div class="header-wraper">
+  
+  <nav class="navbar navbar-expand-lg " style=" background-color:#26272b;" >
+    <a style="color: white" class="navbar-brand"  href="/">Library</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon" ></span>
+    </button>
     
-    </ul>
-    <form id ="formSearch" class="form-inline my-2 my-lg-0">
-      <input name= "input" class="butonSearch" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" class="butonSearch" type="submit">Search</button>
-    </form>
-  </div>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto" >
+        </li>
+          <li class="nav-item active">
+            <a style="color: white" class="nav-link " href="/home?page">Home <span class="sr-only">(current)</span></a>
+        </li>
+      {{#if user}}
+          <li class="nav-item active" style="padding-top: 8px;" >
+            <span style="color: white">Wellcome,{{user}}</span>
+          </li>
+          <li class="nav-item active">
+            <a style="color: white" class="nav-link" href="/register/logout">Log Out<span class="sr-only">(current)</span></a>
+          </li>
+      {{else}}
+          </li>
+            <li class="nav-item active">
+              <a style="color: white" class="nav-link" href="/register/login">Login <span class="sr-only">(current)</span></a>
+          </li>
+          </li>
+            <li class="nav-item active">
+              <a style="color: white" class="nav-link" href="/register/signup">Sign up <span class="sr-only">(current)</span></a>
+          </li>
+        {{/if}}
+        </li>
+        <form id ="formSearch" class="form-inline my-2 my-lg-0">
+          <input name= "input" class="butonSearch" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" class="butonSearch" type="submit">Search</button>
+        </form>
+       
+
+       
+         
+        <li class="nav-item dropdown">
+          
+          <a style="color: white" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Menu
+          </a>
+        
+
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a  class="dropdown-item "  href="/courses/create">CREATE</a>
+          {{#if admin}}
+            <a class="dropdown-item " href="/me/stored/courses">BOOKSTORE</a> 
+            {{/if}}
+
+
+        </li>
+
+      </ul>
+    
+    </div>
 
 </nav>
+</div>
 <script>
 
   const formSearch = document.getElementById("formSearch")

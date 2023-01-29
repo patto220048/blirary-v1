@@ -69,12 +69,16 @@ class courseController  {
         
         const query = req.query.q 
         
-        const courses = Course.find({name:{$regex:query, $options:'i' }}).limit(40)
-            .then(courses=>res.render('search',{courses: mutipleMongooseToOject(courses)}))
-            .catch(next)
+        try {
             
+            Course.find({slug:{$regex:query, $options:'i' }}).limit(40)
+            Course.find({level:{$regex:query, $options:'i' }}).limit(40)
+                .then(courses=>res.render('search',{courses: mutipleMongooseToOject(courses)}))
 
-       
+                .catch(next)
+        } catch (err) {
+           console.log(err)
+        }
     }
  
 }
