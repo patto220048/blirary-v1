@@ -1,5 +1,5 @@
 {{> header}}
-<div class="container" style="width: 70%; padding-top : 10.5rem">
+<div class="container-createbook" class="mt-4" >
     <h3>Login</h3>
     <form id= "formLogin"action="/register/login" method="POST">
         <div class="form-group">
@@ -11,10 +11,11 @@
             <input type="password" class="form-control" id="password_login" placeholder="Password">
             <span class="password_err" style="color: red"></span>
         </div>
-        <button type="submit" class="btn btn-primary">Login</button>
-        <a href="/register/signup" class="btn btn-primary">Sign up</a>
+        <button type="submit">Login</button>
+        <span>Create account now ? <a href="/register/signup">Sign up</a></span>
     </form>
 </div>
+
 
 
 <script>

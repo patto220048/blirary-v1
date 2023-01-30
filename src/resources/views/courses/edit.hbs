@@ -1,7 +1,7 @@
 
-
-<div class="mt-4">
-    <h3>EDIT BOOK</h3>
+{{> header}}
+<div class="container-createbook" class="mt-4" >
+    <h3>Edit book</h3>
     <form method="POST" action="/courses/{{course._id}}?_method=PUT">
         <div class="form-group">
             <label for="name">Name</label>
@@ -21,4 +21,4 @@
         </div>
         <button type="submit" class="btn btn-primary">Save</button>
     </form>
-</div>  
+</div>

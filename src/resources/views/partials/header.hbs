@@ -23,20 +23,46 @@
         </div>
         {{/if}}
           {{#if user}}
-        <div class="btn-group dropleft">
-          <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            {{user}}
-          </button>
+        
+          <div class="btn-group dropleft">
+            <button type="button" class="btn btn-secondary " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa-solid fa-bars"></i>
+            </button>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">PROFILE (updating)</a>
+            <div class="drop-item-mobile">
+              <a class="dropdown-item-list" href="/home?page">HOME</a>
+              <a class="dropdown-item-list" href="/courses/create">CREATE BOOK</a>
+            </div>
+            <a class="dropdown-item" href="#">PROFILE ({{user}})</a>
+          
             
             {{#if admin}}
             <a class="dropdown-item" href="/me/stored/courses">BOOKSTORE</a>
             {{/if}}
             <a class="dropdown-item" href="/register/logout">LOG OUT</a>
-          </div>
+        </div>
+          {{else}}
+        <div class="btn-mobile">
+            <div class="btn-group dropleft">
+            <button type="button" class="button-moble" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-bars"></i></button>
+              <div class="dropdown-menu">
+            <div class="drop-item-mobile">
+              <a class="dropdown-item-list" href="/home?page">HOME</a>
+
+              <a class="dropdown-item-list" href="/register/login">LOGIN</a>
+              <a class="dropdown-item-list" href="/register/signup">SIGN UP</a>
+            </div>
+
+        </div>
+
+
+            
+            
+                
+
           {{/if}}
-    </div>
+        </div>
 
           
         </div>
