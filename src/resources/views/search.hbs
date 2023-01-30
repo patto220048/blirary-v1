@@ -1,32 +1,28 @@
 {{> header}}
-<div class="wapper">
-            <div class="home-container">
-                {{#each courses}}
-            
-                    <div class="home-item">
-                        <a href="/courses/{{this.slug}}"><img src="{{this.image}}" alt="" class="home-theme"></a>
-                        <div class="home-footer">
-                           <a href="/courses/{{this.slug}}"><h4 class="home-title">{{this.name}}</h4></a> 
-                        </div>
-                    </div>
-                {{/each}}
-            </div>
-        </div>
-          
+<div class="warper">
+    <div class="home-pages">
+        <div class="container-home">
 
-        <ul class="pagination justify-content-center">
-              
-                
-               
+            {{#each courses}}
+            <div class="container-item">
+                <a href="/courses/{{this.slug}}"><img src="{{this.image}}" alt="{{this.name}}"></a>
+                <h3><a href="/courses/{{this.slug}}">{{this.name}}</a></h3>
+                <label>Author: {{this.level}}</label>
+            </div>
+            {{/each}}
+        </div>
+        <ul class="pagination justify-content-center ">
             {{#each pages}}
-            <li class="page-item" id="listItem">
-            <a class="page-link" href="/home?page={{this}}">{{this}}</a></li>
-            {{/each}}  
-                
-            
+                <li class="page-item" id="listItem">
+                <a class="page-link" href="/home?page={{this}}">{{this}}</a></li>
+            {{/each}}    
         </ul>
+
+    </div>
+</div>
+
 
             
         
-</div>   
-{{>footer}}    
+
+

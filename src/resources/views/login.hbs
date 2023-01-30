@@ -1,7 +1,7 @@
 {{> header}}
 <div class="container" style="width: 70%; padding-top : 10.5rem">
     <h3>Login</h3>
-    <form action="/register/login" method="POST">
+    <form id= "formLogin"action="/register/login" method="POST">
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
             <input class="form-control" id="email_login" aria-describedby="emailHelp" placeholder="Enter email">
@@ -19,9 +19,9 @@
 
 <script>
 
-    const form2 = document.querySelector('.container_main .container form')
+    const form2 = document.getElementById("formLogin");
 
-
+    console.log(form2)
     const email_err = document.querySelector('.email_err')
     const password_err = document.querySelector('.password_err')
         
@@ -45,6 +45,9 @@
 
                 });
                 const data = await res.json()
+
+                console.log(data)
+                
                 if(data.errors){
                     email_err.textContent = data.errors.email
                     password_err.textContent = data.errors.password

@@ -1,80 +1,70 @@
-
-<div class="header-wraper">
-  
-  <nav class="navbar navbar-expand-lg " style=" background-color:#26272b;" >
-    <a style="color: white" class="navbar-brand"  href="/">Library</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon" ></span>
-    </button>
-    
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto" >
-        </li>
-          <li class="nav-item active">
-            <a style="color: white" class="nav-link " href="/home?page">Home <span class="sr-only">(current)</span></a>
-        </li>
-      {{#if user}}
-          <li class="nav-item active" style="padding-top: 8px;" >
-            <span style="color: white">Wellcome,{{user}}</span>
-          </li>
-          <li class="nav-item active">
-            <a style="color: white" class="nav-link" href="/register/logout">Log Out<span class="sr-only">(current)</span></a>
-          </li>
-      {{else}}
-          </li>
-            <li class="nav-item active">
-              <a style="color: white" class="nav-link" href="/register/login">Login <span class="sr-only">(current)</span></a>
-          </li>
-          </li>
-            <li class="nav-item active">
-              <a style="color: white" class="nav-link" href="/register/signup">Sign up <span class="sr-only">(current)</span></a>
-          </li>
+<div class="header-wapper">
+  <div class="header-item">
+    <a href="/" class="logo">BLIRARY-V1</a>
+    <form action="" id ="formSearch">
+      <input name= "input" type="text" placeholder="Search . . .">
+      <button type="submit" ><i class="fa-solid fa-magnifying-glass"></i></button> 
+    </form>
+    <div class="header-link-item">
+      
+        <div class="header-link">
+          <a href="/home?page">HOME</a>
+        </div>
+        {{#if user}}
+        <div class="header-link">
+          <a href="/courses/create">CREATE BOOK</a>
+        </div>
+        {{else}}
+        <div class="header-link">
+          <a href="/register/login">LOGIN</a>
+        </div>
+        <div class="header-link">
+          <a href="/register/signup">SIGN UP</a>
+        </div>
         {{/if}}
-        </li>
-        <form id ="formSearch" class="form-inline my-2 my-lg-0">
-          <input name= "input" class="butonSearch" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" class="butonSearch" type="submit">Search</button>
-        </form>
-       
-
-       
-         
-        <li class="nav-item dropdown">
-          
-          <a style="color: white" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Menu
-          </a>
-        
-
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a  class="dropdown-item "  href="/courses/create">CREATE</a>
-          {{#if admin}}
-            <a class="dropdown-item " href="/me/stored/courses">BOOKSTORE</a> 
+          {{#if user}}
+        <div class="btn-group dropleft">
+          <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{user}}
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">PROFILE (updating)</a>
+            
+            {{#if admin}}
+            <a class="dropdown-item" href="/me/stored/courses">BOOKSTORE</a>
             {{/if}}
-
-
-        </li>
-
-      </ul>
-    
+            <a class="dropdown-item" href="/register/logout">LOG OUT</a>
+          </div>
+          {{/if}}
     </div>
 
-</nav>
+          
+        </div>
+    </div>
+  </div>
 </div>
+
+
 <script>
 
   const formSearch = document.getElementById("formSearch")
-  
+  console.log(formSearch)
   formSearch.addEventListener('submit', (e)=>{
     e.preventDefault();
     const value = formSearch.input.value
+    
     console.log(value);
 
-    fetch(`/courses/v1/search?q=${value}`,{
+    try{
+        fetch(`/courses/v1/search?q=${value}`,{
         method: 'GET',
         })
-    location.assign(`/courses/v1/search?q=${value}`)
+      location.assign(`/courses/v1/search?q=${value}`)
+    }
+    catch{
+      location.assign(`/home?page`)
+
+    }
         
         
       
