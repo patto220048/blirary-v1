@@ -1,6 +1,6 @@
 const path = require('path');
 const express = require('express');
-const morgan = require('morgan');
+
 const methodOverride = require('method-override') 
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
@@ -14,13 +14,14 @@ const validator = require('validator');
 const handlebars = require('express-handlebars');
 const hbs = require('handlebars')
 const app = express();
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 4000
 
 
 const route = require('./routes');
 
 
 const db = require('./config/db');
+require('dotenv').config();
 const { inflateRawSync } = require('zlib');
 //conect bd
 db.connect();
@@ -34,9 +35,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 // methot [PUT] 
 app.use(methodOverride('_method'))
 
-app.use(morgan('combined'))
 
-
+const { restart } = require('nodemon');
 
 app.engine('hbs', handlebars.engine({
     extname: '.hbs',

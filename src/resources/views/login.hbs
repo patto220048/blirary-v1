@@ -1,7 +1,7 @@
-
-<div class="container" style="width: 70%">
+{{> header}}
+<div class="container-createbook" class="mt-4" >
     <h3>Login</h3>
-    <form action="/register/login" method="POST">
+    <form id= "formLogin"action="/register/login" method="POST">
         <div class="form-group">
             <label for="exampleInputEmail1">Email address</label>
             <input class="form-control" id="email_login" aria-describedby="emailHelp" placeholder="Enter email">
@@ -11,17 +11,18 @@
             <input type="password" class="form-control" id="password_login" placeholder="Password">
             <span class="password_err" style="color: red"></span>
         </div>
-        <button type="submit" class="btn btn-primary">Login</button>
-        <a href="http://localhost:3000/register/signup" class="btn btn-primary">Sign up</a>
+        <button type="submit">Login</button>
+        <span>Create account now ? <a href="/register/signup">Sign up</a></span>
     </form>
 </div>
 
 
+
 <script>
 
-    const form2 = document.querySelector('.container_main .container form')
+    const form2 = document.getElementById("formLogin");
 
-
+    console.log(form2)
     const email_err = document.querySelector('.email_err')
     const password_err = document.querySelector('.password_err')
         
@@ -45,13 +46,16 @@
 
                 });
                 const data = await res.json()
+
+                console.log(data)
+                
                 if(data.errors){
                     email_err.textContent = data.errors.email
                     password_err.textContent = data.errors.password
 
                 }
                 if(data.user){
-                    location.assign('/home?page=1')
+                    location.assign('/home?page')
                 }
 
             }

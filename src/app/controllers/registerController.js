@@ -2,7 +2,7 @@
 const jwt = require('jsonwebtoken');    
 const User = require('../models/User');
 const Users = require('../models/User')
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 
 // handle errors

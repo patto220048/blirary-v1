@@ -1,61 +1,102 @@
-
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="/">Library</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav ml-auto">
-      </li>
-        <li class="nav-item active">
-          <a class="nav-link " href="/home?page=1">Home <span class="sr-only">(current)</span></a>
-      </li>
-    {{#if user}}
-        <li class="nav-item active" style="padding-top: 8px">
-          <span>{{#if user}}Wellcome, {{user}}{{/if}}</span>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="http://localhost:3000/register/logout">Log Out<span class="sr-only">(current)</span></a>
-        </li>
-    {{else}}
-        </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="http://localhost:3000/register/login">Login <span class="sr-only">(current)</span></a>
-        </li>
-        </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="http://localhost:3000/register/signup">Sign up <span class="sr-only">(current)</span></a>
-        </li>
-      {{/if}}
-      </li>
-      
-
-      <li class="nav-item dropdown">
-        
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Menu
-        </a>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item "  href="http://localhost:3000/courses/create">CREATE</a>
-          <a class="dropdown-item" href="http://localhost:3000/me/stored/courses">BOOKSTORE</a>
-      </li>
-    
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+<div class="header-wapper">
+  <div class="header-item">
+    <a href="/" class="logo">BLIRARY-V1</a>
+    <form action="" id ="formSearch">
+      <input name= "input" type="text" placeholder="Search . . .">
+      <button type="submit" ><i class="fa-solid fa-magnifying-glass"></i></button> 
     </form>
-  </div>
+    <div class="header-link-item">
+      
+        <div class="header-link">
+          <a href="/home?page">HOME</a>
+        </div>
+        {{#if user}}
+        <div class="header-link">
+          <a href="/courses/create">CREATE BOOK</a>
+        </div>
+        {{else}}
+        <div class="header-link">
+          <a href="/register/login">LOGIN</a>
+        </div>
+        <div class="header-link">
+          <a href="/register/signup">SIGN UP</a>
+        </div>
+        {{/if}}
+          {{#if user}}
+        
+          <div class="btn-group dropleft">
+            <button type="button" class="btn btn-secondary " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+          <div class="dropdown-menu">
+            <div class="drop-item-mobile">
+              <a class="dropdown-item-list" href="/home?page">HOME</a>
+              <a class="dropdown-item-list" href="/courses/create">CREATE BOOK</a>
+            </div>
+            <a class="dropdown-item" href="#">PROFILE ({{user}})</a>
+          
+            
+            {{#if admin}}
+            <a class="dropdown-item" href="/me/stored/courses">BOOKSTORE</a>
+            {{/if}}
+            <a class="dropdown-item" href="/register/logout">LOG OUT</a>
+        </div>
+          {{else}}
+        <div class="btn-mobile">
+            <div class="btn-group dropleft">
+            <button type="button" class="button-moble" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa-solid fa-bars"></i></button>
+              <div class="dropdown-menu">
+            <div class="drop-item-mobile">
+              <a class="dropdown-item-list" href="/home?page">HOME</a>
 
-</nav>
+              <a class="dropdown-item-list" href="/register/login">LOGIN</a>
+              <a class="dropdown-item-list" href="/register/signup">SIGN UP</a>
+            </div>
+
+        </div>
+
+
+            
+            
+                
+
+          {{/if}}
+        </div>
+
+          
+        </div>
+    </div>
+  </div>
+</div>
+
+
 <script>
 
+  const formSearch = document.getElementById("formSearch")
+  console.log(formSearch)
+  formSearch.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const value = formSearch.input.value
+    
+    console.log(value);
 
-   
+    try{
+        fetch(`/courses/v1/search?q=${value}`,{
+        method: 'GET',
+        })
+      location.assign(`/courses/v1/search?q=${value}`)
+    }
+    catch{
+      location.assign(`/home?page`)
 
-
+    }
+        
+        
+      
+      
+  
+  })
+  
 
 </script>

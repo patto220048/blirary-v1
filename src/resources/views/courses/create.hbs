@@ -1,22 +1,25 @@
-<div class="container" class="mt-4" style="width: 70%">
-    <h3>Create BBook</h3>
+{{> header}}
+
+<div class="container-createbook" class="mt-4" >
+    <h3>Create Book</h3>
     <form method="POST" action="/courses/store" >
         <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" name = "name" > 
+            <label for="name">Name:</label>
+            <input placeholder="bookname . . ." type="text" class="form-control" id="name" name = "name" > 
         </div>
         <div class="form-group">
-            <label for="decription">Description</label>
-            <textarea class="form-control" id="description" name = "description" > </textarea>
+            <label for="decription">Description:</label>
+            <textarea rows="3" cols="33" class="form-control" id="description" name = "description" > </textarea>
         </div>
         <div class="form-group">
-            <label for="image">Link Image</label>
-            <input type="text" class="form-control" id="image" name = "image" > 
+            <label for="image">Image:</label>
+            <input placeholder="link . . ." type="text" class="form-control" id="image" name = "image" > 
         </div>
         <div class="form-group">
-            <label for="level">Author</label>
-            <input type="text" class="form-control" id="level" name ="level" > 
+            <label for="level">Author:</label>
+            <input placeholder="author . . ." type="text" class="form-control" id="level" name ="level" > 
         </div>
-        <button type="submit" class="btn btn-primary">Create</button>
+        <button type="submit">Create book</button>
     </form>
 </div>
+

@@ -8,7 +8,7 @@ class siteController  {
     index(req, res, next) {
         const peg =[]
         const page = req.query.page || 1
-        const perPage = 3
+        const perPage = 6
         Course
         .find({})
         .skip((perPage * page) - perPage) // page 1 value is 0

@@ -1,29 +1,27 @@
 
-
-<div class="container " style="width: 70%" >
-    <h3>Register System</h3>
-    <form action="/register/signup" method="POST" class="form" >
+{{> header}}
+<div class="container-createbook" class="mt-4" >
+    <h3>Sign up</h3>
+    <form id="formSignup" action="/register/login" method="POST">
         <div class="form-group">
             <label for="username">User Name: </label>
             <input type="text"  name="username" class="form-control" id="username_id" value="" placeholder="Enter UserName" />
             <span class="username_err" style="color: red;"></span>
         </div>
-        
         <div class="form-group">
-            <label for="email">Email</label>
-            <input name= "email"class="form-control"  id="email_id" value="" placeholder="Enter email" />
+            <label for="exampleInputEmail1">Email address</label>
+            <input class="form-control" id="email_id" aria-describedby="emailHelp" placeholder="Enter email">
             <span class="email_err" style="color: red"></span>
-        </div>
-
         <div class="form-group">
-            <label for="password">Password: </label>
-            <input required = "true" type="password" name="password" class="form-control" id="password_id" placeholder="Enter Password" minlength="8"  />
-            <span class="password_err" style="color: red" ></span>
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="password_id" placeholder="Password">
+            <span class="password_err" style="color: red"></span>
         </div>
-
-       <button class="btn btn-primary" value="submit">Sign up</button>
+        <button type="submit">SIGN UP</button>
+        <span>Login now ? <a href="/register/login">Login</a></span>
     </form>
 </div>
+
 
 
 
@@ -34,7 +32,7 @@
 
    
   
-    const form1 = document.querySelector('.container_main .container form')
+    const form1 = document.getElementById('formSignup')
     console.log(form1)
 
     const email_err = document.querySelector('.email_err')
